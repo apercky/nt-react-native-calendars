@@ -275,12 +275,12 @@ export default class Agenda extends Component<AgendaProps, State> {
   onTouchStart = () => {
     this.headerState = 'touched';
 
-    if(Platform.OS === 'native')
+    if(Platform.OS !== 'web')
       this.knob?.current?.setNativeProps({style: {opacity: 0.5}});
   };
 
   onTouchEnd = () => {
-    if(Platform.OS === 'native')
+    if(Platform.OS !== 'web')
       this.knob?.current?.setNativeProps({style: {opacity: 1}});
 
     if (this.headerState === 'touched') {

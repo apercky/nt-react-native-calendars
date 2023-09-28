@@ -216,7 +216,7 @@ const ExpandableCalendar = (props: ExpandableCalendarProps) => {
   const shouldHideArrows = !horizontal ? true : hideArrows || false;
 
   const updateNativeStyles = () => {
-    if(Platform.OS === 'native') {
+    if(Platform.OS !== 'web') {
       wrapper?.current?.setNativeProps(_wrapperStyles.current);
   
       if (!horizontal) {
