@@ -16,7 +16,8 @@ import {
   ImageSourcePropType,
   GestureResponderEvent,
   PanResponderGestureState,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform
 } from 'react-native';
 
 import {page} from '../dateutils';
@@ -215,12 +216,14 @@ const ExpandableCalendar = (props: ExpandableCalendarProps) => {
   const shouldHideArrows = !horizontal ? true : hideArrows || false;
 
   const updateNativeStyles = () => {
-    wrapper?.current?.setNativeProps(_wrapperStyles.current);
-
-    if (!horizontal) {
-      header?.current?.setNativeProps(_headerStyles);
-    } else {
-      weekCalendarWrapper?.current?.setNativeProps(_weekCalendarStyles);
+    if(Platform.OS === 'native') {
+      wrapper?.current?.setNativeProps(_wrapperStyles.current);
+  
+      if (!horizontal) {
+        header?.current?.setNativeProps(_headerStyles);
+      } else {
+        weekCalendarWrapper?.current?.setNativeProps(_weekCalendarStyles);
+      }
     }
   };
 

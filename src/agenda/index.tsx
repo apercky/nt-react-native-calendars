@@ -274,11 +274,14 @@ export default class Agenda extends Component<AgendaProps, State> {
 
   onTouchStart = () => {
     this.headerState = 'touched';
-    this.knob?.current?.setNativeProps({style: {opacity: 0.5}});
+
+    if(Platform.OS === 'native')
+      this.knob?.current?.setNativeProps({style: {opacity: 0.5}});
   };
 
   onTouchEnd = () => {
-    this.knob?.current?.setNativeProps({style: {opacity: 1}});
+    if(Platform.OS === 'native')
+      this.knob?.current?.setNativeProps({style: {opacity: 1}});
 
     if (this.headerState === 'touched') {
       const isOpen = this.state.calendarScrollable;
